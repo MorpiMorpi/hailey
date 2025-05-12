@@ -9,6 +9,28 @@
     
     <script src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2025/05/12/12/20250512124345-Y5XDCYT0.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+<script>
+    setTimeout(function() {
+        window.botpress.init({
+            botId: "1812cadf-1d86-4b4c-860f-701aa71495de",
+            clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",
+            selector: "#webchat",
+            config: {
+                color: "#5eb1ef",
+                variant: "soft",
+                themeMode: "light",
+                fontFamily: "inter",
+                radius: 4
+            }
+        });
+
+        window.botpress.on("webchat:ready", () => {
+            console.log("Botpress webchat ready!");
+            window.botpress.open();
+        });
+    }, 1000);  // 1-second delay to allow script loading
+</script>
     
 
     <style>
@@ -64,38 +86,34 @@
         
     <!-- Webchat Initialization Script -->
 
-    <script>
-    window.addEventListener("DOMContentLoaded", function () {
-        console.log("DOM fully loaded and parsed.");
-
-        // Check if the botpress object is available
+   <script>
+    window.addEventListener('DOMContentLoaded', function() {
         if (window.botpress) {
             console.log("Botpress script loaded!");
-
-            // Initialize the webchat
             window.botpress.init({
-                botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Your Bot ID
-                clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Your Client ID
-                selector: "#webchat",  // Target the #webchat div instead of body
+                botId: "1812cadf-1d86-4b4c-860f-701aa71495de",
+                clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",
+                selector: "#webchat", // Ensure the selector is pointing to the correct element
                 config: {
                     color: "#5eb1ef",
                     variant: "soft",
                     themeMode: "light",
-                    fontFamily: "inter",
+                    fontFamily: "inter",  // Use one of the supported font families
                     radius: 4
                 }
             });
 
-            // Wait for the webchat to be ready
-            window.botpress.on("webchat:ready", () => {
-                console.log("Botpress webchat ready!");
-                window.botpress.open();  // Automatically open the chat window
+            // Ensure chat window opens after initialization
+            window.botpress.on('webchat:ready', () => {
+                console.log('Botpress webchat is ready!');
+                window.botpress.open();
             });
         } else {
-            console.error("Botpress script not loaded!");
+            console.error("Botpress script did not load.");
         }
     });
 </script>
+
     
 </body>
 </html>
