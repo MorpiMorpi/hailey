@@ -65,11 +65,15 @@
     <!-- Webchat Initialization Script -->
 
     <script>
-        // Initialize the Botpress webchat correctly
+    // Wait for the page to load before initializing the webchat
+    window.addEventListener("load", function () {
+        // Ensure the script is loaded
         window.botpress.on("webchat:ready", () => {
-            window.botpress.open();  // Automatically open the chat window
+            console.log("Botpress webchat ready!");
+            window.botpress.open(); // Open the chat automatically
         });
-    
+
+        // Initialize the Botpress Webchat
         window.botpress.init({
             botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Replace with your actual Bot ID
             clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Replace with your actual Client ID
@@ -78,10 +82,12 @@
                 color: "#5eb1ef",
                 variant: "soft",
                 themeMode: "light",
-                fontFamily: "inter",  // Use a valid font family
-                radius: 4             // Set the radius within the valid range (0-4)
+                fontFamily: "inter",
+                radius: 4
             }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
