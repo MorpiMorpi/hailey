@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAILEY - Stress Management Chatbot</title>
 
-    <!-- Include the Botpress Webchat Script -->
+    <!-- Include Botpress Webchat Script -->
     <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
-    
+
     <style>
-        /* Styling for the Webchat container */
+        /* Webchat container styling */
+        #webchat {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        /* Fullscreen mode for webchat */
         #webchat .bpWebchat {
             position: unset;
             width: 100%;
@@ -18,42 +27,48 @@
             max-width: 100%;
         }
 
-        /* Hides the floating button (Fab) */
+        /* Hide the floating button */
         #webchat .bpFab {
             display: none;
+        }
+
+        /* Basic page styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
         }
     </style>
 </head>
 <body>
+    <h1>HAILEY - Stress Management Chatbot</h1>
+    <p>Start chatting with HAILEY below:</p>
 
     <!-- Webchat Container -->
-    <div id="webchat" style="width: 500px; height: 500px;"></div>
+    <div id="webchat"></div>
 
     <!-- Webchat Initialization Script -->
     <script>
-        // Initialize Botpress Webchat
         window.botpress.on("webchat:ready", () => {
             window.botpress.open();
         });
 
         window.botpress.init({
-            "botId": "1812cadf-1d86-4b4c-860f-701aa71495de",  // Your Bot ID
-            "configuration": {
-                "website": {},  // Website settings (optional)
-                "email": {},    // Email settings (optional)
-                "phone": {},    // Phone settings (optional)
-                "termsOfService": {},  // Optional link to terms of service
-                "privacyPolicy": {},  // Optional link to privacy policy
-                "color": "#5eb1ef",    // Customize the color of chat elements
-                "variant": "soft",     // Choose chatbox appearance ('soft' or 'bold')
-                "themeMode": "light",  // Choose theme ('light' or 'dark')
-                "fontFamily": "inter", // Font family for the text in the chatbox
-                "radius": 1            // Border radius (adjust roundness of corners)
-            },
-            "clientId": "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Your Client ID
-            "selector": "#webchat"  // Specify the container where the webchat will appear
+            botId: "1812cadf-1d86-4b4c-860f-701aa71495de", // Your Bot ID
+            clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4", // Your Client ID
+            selector: "#webchat",
+            configuration: {
+                color: "#5eb1ef",
+                variant: "soft",
+                themeMode: "light",
+                fontFamily: "Arial",
+                radius: 5
+            }
         });
     </script>
-
 </body>
 </html>
