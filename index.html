@@ -86,28 +86,28 @@
     <!-- Webchat Initialization Script -->
 
   <script>
-  window.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener("DOMContentLoaded", function () {
     if (window.botpress) {
       console.log("Botpress script loaded!");
 
-      // Initialize Botpress Webchat
       window.botpress.init({
-        botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Replace with your Bot ID
-        clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Replace with your Client ID
-        selector: "body",  // Target the body tag itself (for now) to resolve injection issue
+        botId: "1812cadf-1d86-4b4c-860f-701aa71495de",
+        clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",
+        selector: "#webchat",
         config: {
           color: "#5eb1ef",
           variant: "soft",
           themeMode: "light",
-          fontFamily: "inter",  // Choose a supported font family like "rubik", "inter", etc.
+          fontFamily: "inter",
           radius: 4
         }
       });
 
-      // Trigger the opening of the webchat window once it is ready
-      window.botpress.on('webchat:ready', () => {
-        console.log('Botpress webchat ready!');
-        window.botpress.open();
+      // Open the chat automatically when ready
+      window.botpress.on("webchat:ready", () => {
+        console.log("Botpress webchat ready!");
+        window.botpress.sendEvent({ type: "show" });
+        window.botpress.open();  // Make sure the chat window opens automatically
       });
     } else {
       console.error("Botpress script did not load.");
