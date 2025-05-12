@@ -65,18 +65,21 @@
     <!-- Webchat Initialization Script -->
 
     <script>
-        // Wait for the page to load before initializing the webchat
-        window.addEventListener("load", function () {
-            // Ensure the script is loaded
+    function initializeBotpress() {
+        // Check if the botpress object is available
+        if (window.botpress) {
+            console.log("Botpress script loaded!");
+
+            // Wait for the webchat to be ready
             window.botpress.on("webchat:ready", () => {
                 console.log("Botpress webchat ready!");
-                window.botpress.open(); // Open the chat automatically
+                window.botpress.open();  // Automatically open the chat window
             });
-    
-            // Initialize the Botpress Webchat
+
+            // Initialize the webchat
             window.botpress.init({
-                botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Replace with your actual Bot ID
-                clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Replace with your actual Client ID
+                botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Your Bot ID
+                clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Your Client ID
                 selector: "#webchat",
                 config: {
                     color: "#5eb1ef",
@@ -86,8 +89,28 @@
                     radius: 4
                 }
             });
-        });
-    </script>
+        } else {
+            console.error("Botpress script not loaded, retrying...");
+            // Retry every 500ms until loaded (up to 10 tries)
+            let retryCount = 0;
+            const retryInterval = setInterval(() => {
+                if (window.botpress) {
+                    clearInterval(retryInterval);
+                    console.log("Botpress loaded after retry!");
+                    initializeBotpress();
+                }
+                retryCount++;
+                if (retryCount >= 10) {
+                    clearInterval(retryInterval);
+                    console.error("Failed to load Botpress after multiple attempts.");
+                }
+            }, 500);
+        }
+    }
+
+    // Run initialization when DOM is ready
+    document.addEventListener("DOMContentLoaded", initializeBotpress);
+</script>
     
 </body>
 </html>
