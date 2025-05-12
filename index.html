@@ -86,32 +86,34 @@
         
     <!-- Webchat Initialization Script -->
 
-   <script>
-    window.addEventListener('DOMContentLoaded', function() {
-        if (window.botpress) {
-            console.log("Botpress script loaded!");
-            window.botpress.init({
-                botId: "1812cadf-1d86-4b4c-860f-701aa71495de",
-                clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",
-                selector: "#webchat", // Ensure the selector is pointing to the correct element
-                config: {
-                    color: "#5eb1ef",
-                    variant: "soft",
-                    themeMode: "light",
-                    fontFamily: "inter",  // Use one of the supported font families
-                    radius: 4
-                }
-            });
+  <script>
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.botpress) {
+      console.log("Botpress script loaded!");
 
-            // Ensure chat window opens after initialization
-            window.botpress.on('webchat:ready', () => {
-                console.log('Botpress webchat is ready!');
-                window.botpress.open();
-            });
-        } else {
-            console.error("Botpress script did not load.");
+      // Initialize Botpress Webchat
+      window.botpress.init({
+        botId: "1812cadf-1d86-4b4c-860f-701aa71495de",  // Replace with your Bot ID
+        clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",  // Replace with your Client ID
+        selector: "body",  // Target the body tag itself (for now) to resolve injection issue
+        config: {
+          color: "#5eb1ef",
+          variant: "soft",
+          themeMode: "light",
+          fontFamily: "inter",  // Choose a supported font family like "rubik", "inter", etc.
+          radius: 4
         }
-    });
+      });
+
+      // Trigger the opening of the webchat window once it is ready
+      window.botpress.on('webchat:ready', () => {
+        console.log('Botpress webchat ready!');
+        window.botpress.open();
+      });
+    } else {
+      console.error("Botpress script did not load.");
+    }
+  });
 </script>
 
     
