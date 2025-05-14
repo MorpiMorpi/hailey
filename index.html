@@ -86,14 +86,16 @@
     <!-- Webchat Initialization Script -->
 
   <script>
-  window.addEventListener("DOMContentLoaded", function () {
+  window.addEventListener("load", function () {
+    console.log("Botpress script loading...");
+
     if (window.botpress) {
       console.log("Botpress script loaded!");
 
       window.botpress.init({
         botId: "1812cadf-1d86-4b4c-860f-701aa71495de",
         clientId: "de8ba891-26ee-4131-aa3f-8af9cfcb78b4",
-        selector: "#webchat",
+        selector: "#webchat", 
         config: {
           color: "#5eb1ef",
           variant: "soft",
@@ -103,17 +105,18 @@
         }
       });
 
-      // Open the chat automatically when ready
+      // Open the chat automatically once it is ready
       window.botpress.on("webchat:ready", () => {
         console.log("Botpress webchat ready!");
         window.botpress.sendEvent({ type: "show" });
-        window.botpress.open();  // Make sure the chat window opens automatically
+        window.botpress.open();
       });
     } else {
       console.error("Botpress script did not load.");
     }
   });
 </script>
+
 
     
 </body>
